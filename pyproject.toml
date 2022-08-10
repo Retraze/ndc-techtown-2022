@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-properly"
-version = "0.1.0"
+version = "1.0.0"
 description = "A workshop in intermediate Python"
 authors = [
 	"Sebastian Roll <sebastianroll84@gmail.com>",
