@@ -1,12 +1,29 @@
-# Python Properly
+# Python Proficiency: Beyond the Basics
+
+## Prerequisites
+
+* [Python 3.7](https://www.python.org/)
+* [Poetry](https://python-poetry.org/)
 
 ## Getting Started
 
 ```shell
-git clone TODO
-cd TODO
-poetry install # install the python dependencies
-poetry shell # enter the virtual environment
+git clone https://github.com/Retraze/ndc-techtown-2022.git
+cd ndc-techtown-2022
+```
+
+If you have setup [direnv](https://direnv.net/):
+
+```shell
+direnv allow    # enters you into the poetry-manager virtual environment
+poetry install  # installs the python dependencies
+```
+
+Otherwise:
+
+```shell
+poetry install # installs the python dependencies
+poetry shell   # enters you into the virtual environment
 ```
 
 ## Workshop Resources:
