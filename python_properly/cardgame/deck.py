@@ -7,10 +7,7 @@ import itertools
 from .card import Card
 
 class Deck:
-    # learn: class attribute
-    deck_size = 52
-    
-    def __init__(self, shuffle=True):
+    def __init__(self, shuffle=False):
         self.cards = list(Card.from_tuple(t) for t in itertools.product(range(2,15),"SHDC"))
         if shuffle:
             random.shuffle(self.cards)
