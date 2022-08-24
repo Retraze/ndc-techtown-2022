@@ -37,11 +37,10 @@ class Card:
     # learn: class attributes
     rank_mapping = {11: "Knight", 12: "Queen", 13: "King", 14: "Ace"}
 
+    # learn: type hinting
     def __init__(self, rank: int, suit: Union[Suit, str]):
         if not self.is_valid_rank(rank):
             raise InvalidRankError(rank)
-            # or alternatively:
-            # raise InvalidCardError(f"{rank} is not a valid rank") from InvalidRank(rank)
         self.rank = rank
 
         self.suit = suit if type(suit) is Suit else self.parse_suit(suit)
@@ -95,6 +94,9 @@ class Card:
             return Suit(suit)
         except ValueError:
             raise InvalidSuitError(suit)
+
+    def __lt__(self, other):
+        raise NotImplementedError
 
     # learn: __str__
     def __str__(self):
