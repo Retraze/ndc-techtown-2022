@@ -32,8 +32,8 @@ def test_compute_average():
 
 
 def test_compute_variance():
-    target = statistics.variance(DATA)
-    assert problems.compute_variance(DATA) == target
+    target = statistics.pvariance(DATA)
+    assert round(problems.compute_variance(DATA), 6) == round(target, 6)
 
 
 def test_largest_element():
@@ -42,7 +42,7 @@ def test_largest_element():
 
 
 def test_smallest_element():
-    target = functools.reduce(lambda a, b: a if a < b else b, DATA, 0)
+    target = functools.reduce(lambda a, b: a if a < b else b, DATA, 9999999)
     assert problems.smallest_element(DATA) == target
 
 
@@ -57,17 +57,17 @@ def test_even_only():
 
 
 def test_take_first_5():
-    target, *_ = zip(*itertools.takewhile(lambda x: x[1]<5, zip(DATA,itertools.count(0))))
+    target, *_ = map(list, zip(*itertools.takewhile(lambda x: x[1]<5, zip(DATA,itertools.count(0)))))
     assert problems.take_first_5(DATA) == target
 
 
 def test_reversed():
-    _, target = zip(*sorted(zip(itertools.count(-3), DATA)))
+    _, target = map(list, zip(*sorted(zip(itertools.count(-3, -1), DATA))))
     assert problems.reversed(DATA) == target
 
 
 def test_flatten():
-    target = more_itertools.flatten(NESTED_DATA)
+    *target, = more_itertools.flatten(NESTED_DATA)
     assert problems.flatten(NESTED_DATA) == target
 
 
