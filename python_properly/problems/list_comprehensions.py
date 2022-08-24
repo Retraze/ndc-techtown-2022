@@ -3,7 +3,7 @@
 # Do not use any imports
 
 # run the tests as follows:
-#   $ poetry run pytest tests/list_comprehensions/test_problems.py -x -vv
+#   $ poetry run pytest tests/problems/test_list_comprehensions.py -x -vv
 
 # The tests uses external or weird solutions to achieve the same thing
 
@@ -32,50 +32,50 @@ MATRIX = [
 
 def compute_average(data):
     # Add all items together, then divide the result by the number of elements
-    pass
+    return None
 
 def compute_variance(data):
     # Subtract the avarage from each item, raise them to the power of 2, then add them all together, then divide by number of elements
-    pass
+    return None
 
 def largest_element(data):
     # Return the largest item in data
-    pass
+    return None
 
 def smallest_element(data):
     # Return the smallest item in data
-    pass
+    return None
 
 def every_third(data):
     # Return every third item in data
-    pass
+    return None
 
 def even_only(data):
     # Return only the even elements (x % 2 == 0)
-    pass
+    return None
 
 def take_first_5(data):
     # Return only the even elements (x % 2 == 0)
-    pass
+    return None
 
 def reversed(data):
     # Return the data in reverse order
-    pass
+    return None
 
 def flatten(nested_data):
     # Flatten a nested list into a normal list.
     # [[1, 2], [3, 4]] -> [1, 2, 3, 4]
-    pass
+    return None
 
 def transpose(matrix):
     # Flip/mirror the matrix abouts its diagonal (the line from [0][0] to [-1][-1])
     # HINT: zip
     # HINT: unpacking
-    pass
+    return None
 
 
 # You can run this module as follow:
-#   $ poetry run python -m python_proficiency.list_comprehensions.problems
+#   $ poetry run python -m python_properly.problems.list_comprehensions
 
 if __name__ == "__main__":
     from rich import print

@@ -1,4 +1,4 @@
-from python_properly.list_comprehensions import problems
+import python_properly.problems.list_comprehensions as problems
 import random
 import statistics
 import functools
@@ -6,7 +6,7 @@ import more_itertools
 import itertools
 
 # you can run these tests like this:
-#   $ poetry run pytest tests/list_comprehensions/test_problems.py -x -v
+#   $ poetry run pytest tests/problems/test_list_comprehensions.py -x -vv
 
 
 # DATA
