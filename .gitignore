@@ -1,3 +1,6 @@
 __pycache__
 *.pyc
-.pytests_cache
+*.pyo
+.pytest_cache
+
+examples/*.py.txt
