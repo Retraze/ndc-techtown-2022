@@ -13,9 +13,9 @@ def test_get_string_length():
     assert problems.get_string_length("aaaa") == 4
 
 def test_convert_to_string():
-    assert problems.convert_to_string(5)    = "5"
-    assert problems.convert_to_string(5.5)  = "5.5"
-    assert problems.convert_to_string(b"5") = "5"
+    assert problems.convert_to_string(5)    == "5"
+    assert problems.convert_to_string(5.5)  == "5.5"
+    assert problems.convert_to_string(b"5") == "5"
 
 def test_make_uppercase():
     assert problems.make_uppercase("FooBar") == "FOOBAR"
