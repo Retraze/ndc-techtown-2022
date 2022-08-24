@@ -1,10 +1,10 @@
 import pytest
+import inspect
 
 from python_properly.cardgame.card import Card, Suit, InvalidCard, InvalidRank, InvalidSuit
 
 
 def test_suit_from_name():
-    # TODO: should we be more fancy here? Something like assert not raises?
     Suit["Hearts"]
     Suit["Spades"]
     Suit["Diamonds"]
@@ -18,7 +18,6 @@ def test_invalid_suit_from_name():
 
 
 def test_suit_from_value():
-    # TODO: should we be more fancy here? Something like assert not raises?
     Suit("H")
     Suit("S")
     Suit("D")
@@ -80,3 +79,6 @@ def test_from_str():
     card = Card.from_str("13D")
     assert card.rank == 13
     assert card.suit == Suit.Diamonds
+
+    first_arg = inspect.getfullargspec(Card.from_str)[0][0]
+    assert first_arg != "self", "classmethod should not have `self` (instance) as first argument. Use `cls` (class) instead"
