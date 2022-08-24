@@ -1,8 +1,5 @@
-from python_properly.list_comprehensions.table import (
-    determine_n_columns, determine_column_widths, format_row, format_table,
-    add_header_separator, reverse_table, convert_dicts_to_table,
-)
-from python_properly.list_comprehensions import data
+from python_properly import tabular_data
+from python_properly.tabular_data import data
 import pytest
 import tabulate
 import random
@@ -10,7 +7,7 @@ import functools
 from pprint import pprint
 
 # you can run these tests like this:
-#   $ poetry run pytest tests/list_comprehensions/test_table.py -x
+#   $ poetry run pytest tests/test_tabular_data.py -x 
 
 def test_determine_n_columns():
     for _ in range(10):
@@ -21,7 +18,7 @@ def test_determine_n_columns():
         # this is a bad, solution, copying it isn't worth it ;)
         target = functools.reduce(lambda a, b: a if a > b else b, map(len, data), 0)
 
-        assert determine_n_columns(data) == target
+        assert tabular_data.determine_n_columns(data) == target
 
 @pytest.mark.parametrize("targets", [[5, 7, 2], [9, 6, 2], [5, 5, 5], []])
 def test_determine_column_widths(targets):
@@ -31,7 +28,7 @@ def test_determine_column_widths(targets):
     for data in [data1, data2, data3]:
         print("testing the following table:")
         pprint(data)
-        assert determine_column_widths(data) == targets
+        assert tabular_data.determine_column_widths(data) == targets
         print()
 
 
@@ -42,7 +39,7 @@ ALIGN_ROW_TEST_DATA = [
 
 @pytest.mark.parametrize("row,cell_sizes,sep,target", ALIGN_ROW_TEST_DATA)
 def test_format_row(row, cell_sizes, sep, target):
-    assert format_row(row, cell_sizes, sep) == target
+    assert tabular_data.format_row(row, cell_sizes, sep) == target
 
 
 @pytest.mark.parametrize("data,add_header", [(data.generate_people(6, add_header=add_header), add_header) for _ in range(20) for add_header in [True, False]])
@@ -52,7 +49,7 @@ def test_format_table(data, add_header):
 
     target = tabulate.tabulate(
         # "tabulate" headers has forced minimum padding
-        add_header_separator(data) if add_header else data,
+        tabular_data.add_header_separator(data) if add_header else data,
         tablefmt = tabulate.TableFormat(
             lineabove        = None,
             linebelowheader  = None,
@@ -66,7 +63,7 @@ def test_format_table(data, add_header):
         numalign="right", # broken?
     )
 
-    output = format_table(data, has_header=add_header)
+    output = tabular_data.format_table(data, has_header=add_header)
 
     print("Target:")
     print(target)
@@ -96,8 +93,8 @@ def test_reverse_table():
         ["1", "2", "3", "a"],
         ["a", "b", "c"],
     ]
-    assert target_1 == reverse_table(data, has_header=True)
-    assert target_2 == reverse_table(data, has_header=False)
+    assert target_1 == tabular_data.reverse_table(data, has_header=True)
+    assert target_2 == tabular_data.reverse_table(data, has_header=False)
 
 
 
@@ -107,7 +104,7 @@ def test_format_table_align():
         ["##", "5", 5, "5.5", 5.5],
         ["##", 5, "5", 5.5, "5.5"],
     ]
-    output = format_table(data)
+    output = tabular_data.format_table(data)
     assert output == "| ## | 5 | 5 | 5.5 | 5.5 |\n| ## | 5 | 5 | 5.5 | 5.5 |"
 
 
@@ -120,5 +117,5 @@ TARGET_USERS_TABLE = """
 """.strip()
 
 def test_convert_dicts_to_table():
-    output = format_table(convert_dicts_to_table(data.USERS), has_header=True)
+    output = tabular_data.format_table(tabular_data.convert_dicts_to_table(data.USERS), has_header=True)
     assert output == TARGET_USERS_TABLE
