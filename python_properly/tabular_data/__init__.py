@@ -1,17 +1,19 @@
-from . import data
 from typing import List, Dict, Any
 
 # The tests for this file already pass. Your task is to
 # rephrease these functions to instead use list/genrator comprehensions.
 
 # run the tests as follows:
-#   $ poetry run pytest tests/list_comprehensions/test_table.py -x
+#   $ poetry run pytest tests/test_tabular_data.py -x 
 
 # If you do not want to delete the current implementation, just "shadow" the
-# functions with new functoins with the same name below
+# functions with new functions with the same name below
+
+# You can run this module (see __main__.py) as follow:
+#   $ poetry run python -m python_properly.tabular_data
 
 
-# LEARN: reduction
+
 # TASK: rephrase this function as a single list expression
 # HINT: you have to check every row, as they may vary in size
 # HINT: there is a nice builtin function
@@ -63,14 +65,14 @@ def add_header_separator(table, fillchar="-"):
 
 # TASK: replace the loop with a slicing operation
 # HINT: it features a start, stop and step
-def reverse_table(list, has_header=False):
+def reverse_table(table, has_header=False):
     if has_header:
-        header, *list = list
+        header, *table = table
     output = []
-    for i in range(len(list)-1, -1, -1):
-        output.append(list[i])
+    for i in range(len(table)-1, -1, -1):
+        output.append(table[i])
     if has_header:
-        return [header] + output
+        return [header, *output]
     else:
         return output
 
@@ -86,7 +88,7 @@ def format_table(
         ) -> str:
     column_widths = determine_column_widths(table)
     if reverse:
-        table = reverse_table(table[1:], has_header=has_header)
+        table = reverse_table(table, has_header=has_header)
     if has_header:
         table = add_header_separator(table)
     output = []
@@ -125,15 +127,3 @@ def convert_dicts_to_table(data: List[Dict[str, Any]]) -> List[List[Any]]:
         output.append(row)
 
     return output
-
-
-# You can run this module as follow:
-#   $ poetry run python -m python_properly.list_comprehensions.table
-if __name__ == "__main__":
-    print(
-        format_table(list(data.generate_people(20, add_header=True)), has_header=True, reverse=True)
-    )
-    print()
-    print(
-        format_table(convert_dicts_to_table(data.USERS), has_header=True)
-    )
