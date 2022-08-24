@@ -4,12 +4,12 @@ from enum import Enum
 from typing import Union
 
 # learn: custom exceptions
-class InvalidCard(Exception):
+class InvalidCardError(Exception):
     ...
 
 
 # learn: custom exceptions with __init__ and __str__ override
-class InvalidRank(InvalidCard):
+class InvalidRankError(InvalidCardError):
     def __init__(self, rank):
         self.rank = rank
 
@@ -17,7 +17,7 @@ class InvalidRank(InvalidCard):
         return f"{self.rank} is not a valid rank. Must be int type between 2-14"
 
 
-class InvalidSuit(InvalidCard):
+class InvalidSuitError(InvalidCardError):
     def __init__(self, suit):
         self.suit = suit
 
@@ -39,9 +39,9 @@ class Card:
 
     def __init__(self, rank: int, suit: Union[Suit, str]):
         if not self.is_valid_rank(rank):
-            raise InvalidRank(rank)
+            raise InvalidRankError(rank)
             # or alternatively:
-            # raise InvalidCard(f"{rank} is not a valid rank") from InvalidRank(rank)
+            # raise InvalidCardError(f"{rank} is not a valid rank") from InvalidRank(rank)
         self.rank = rank
 
         self.suit = suit if type(suit) is Suit else self.parse_suit(suit)
@@ -50,26 +50,26 @@ class Card:
     @classmethod
     def from_tuple(cls, t):
         if len(t) not in [2, 3]:
-            raise InvalidCard(f"{s} is not a valid input string")
+            raise InvalidCardError(f"{s} is not a valid input string")
         # unpacking
         return cls(*t)
 
     @classmethod
     def from_str(cls, s):
         if len(s) not in [2, 3]:
-            raise InvalidCard(f"{s} is not a valid input string")
+            raise InvalidCardError(f"{s} is not a valid input string")
 
         rank = s[:-1]
         try:
             rank = int(rank)
         except ValueError:
-            # should we raise InvalidRank, or perhaps InvalidCard from InvalidRank?
-            raise InvalidRank(s)
+            # should we raise InvalidRank, or perhaps InvalidCardError from InvalidRank?
+            raise InvalidRankError(s)
 
         try:
             suit = Suit(s[-1])
         except ValueError:
-            raise InvalidSuit(s)
+            raise InvalidSuitError(s)
 
         return cls(rank, suit)
 
@@ -86,7 +86,7 @@ class Card:
     @staticmethod
     def parse_suit(suit: str):
         if type(suit) != str:
-            raise InvalidSuit(suit)
+            raise InvalidSuitError(suit)
         try:
             return Suit[suit]
         except KeyError:
@@ -94,7 +94,7 @@ class Card:
         try:
             return Suit(suit)
         except ValueError:
-            raise InvalidSuit(suit)
+            raise InvalidSuitError(suit)
 
     # learn: __str__
     def __str__(self):

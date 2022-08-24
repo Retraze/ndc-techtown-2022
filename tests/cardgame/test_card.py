@@ -1,7 +1,7 @@
 import pytest
 import inspect
 
-from python_properly.cardgame.card import Card, Suit, InvalidCard, InvalidRank, InvalidSuit
+from python_properly.cardgame.card import Card, Suit, InvalidCardError, InvalidRankError, InvalidSuitError
 
 
 def test_suit_from_name():
@@ -39,19 +39,19 @@ def test_card_invalid_rank():
     invalid_ranks = [-3, 0, 1, 15, "4"]
     for rank in invalid_ranks:
         # TODO: should we assert something about str(InvalidRank) ?
-        with pytest.raises(InvalidRank):
+        with pytest.raises(InvalidRankError):
             card = Card(rank, Suit.Spades)
 
 
 def test_card_invalid_suit_str():
-    with pytest.raises(InvalidSuit):
+    with pytest.raises(InvalidSuitError):
         card = Card(2, "Heartz")
 
 
 def test_card_invalid_suit_type():
     invalid_suits = [-3, [], None]
     for suit in invalid_suits:
-        with pytest.raises(InvalidCard):
+        with pytest.raises(InvalidCardError):
             card = Card(2, suit)
 
 
