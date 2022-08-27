@@ -4,7 +4,6 @@ from .song import SongData
 from .drm import check_drm
 
 
-
 def play_song(song_title, db_conn: DBConnection, player: AudioPlayer):
     """
     1. loads song data
