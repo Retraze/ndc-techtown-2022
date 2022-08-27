@@ -27,10 +27,10 @@ class InvalidSuitError(InvalidCardError):
 
 # learn: Enum
 class Suit(Enum):
-    Spades = "S"
-    Hearts = "H"
-    Diamonds = "D"
     Clubs = "C"
+    Diamonds = "D"
+    Hearts = "H"
+    Spades = "S"
 
     @classmethod
     def from_str(cls, suit: str):
@@ -45,16 +45,14 @@ class Suit(Enum):
         except ValueError:
             raise InvalidSuitError(suit)
 
+    def __lt__(self, other):
+        suit_names_ascending_values = list(Suit.__members__)
+        return suit_names_ascending_values.index(self.name) < suit_names_ascending_values.index(other.name)
+
 
 class Card:
     # learn: class attributes
     rank_mapping = {11: "Knight", 12: "Queen", 13: "King", 14: "Ace"}
-    suit_ascending_values = [
-        Suit.Clubs,
-        Suit.Diamonds,
-        Suit.Hearts,
-        Suit.Spades,
-    ]
 
     # learn: type hinting
     def __init__(self, rank: int, suit: Union[Suit, str]):
@@ -105,7 +103,7 @@ class Card:
         if self.rank < other.rank:
             return True
         if self.rank == other.rank:
-            if self.suit_ascending_values.index(self.suit) < self.suit_ascending_values.index(other.suit):
+            if self.suit < other.suit:
                 return True
         return False
 
