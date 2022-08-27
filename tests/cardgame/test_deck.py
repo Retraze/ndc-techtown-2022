@@ -1,15 +1,13 @@
-# learn: __init__.py and __all__ ?
-# from python_properly.cardgame import Deck
 from python_properly.cardgame.deck import Deck
 
 
 unshuffled_order = [
-        (0, "2 of Spades"),
-        (1, "2 of Hearts"),
-        (2, "2 of Diamonds"),
-        (3, "2 of Clubs"),
-        (-2, "Ace of Diamonds"),
-        (-1, "Ace of Clubs"),
+        (0, "2 of Clubs"),
+        (1, "2 of Diamonds"),
+        (2, "2 of Hearts"),
+        (3, "2 of Spades"),
+        (-2, "Ace of Hearts"),
+        (-1, "Ace of Spades"),
     ]
 
 def test_deck():
@@ -37,9 +35,9 @@ def test_deck_draw():
     assert len(deck.cards) == 52-5
 
     assert [str(card) for card in five_cards] == [
-        "2 of Spades",
-        "2 of Hearts",
-        "2 of Diamonds",
         "2 of Clubs",
-        "3 of Spades",
+        "2 of Diamonds",
+        "2 of Hearts",
+        "2 of Spades",
+        "3 of Clubs",
     ]
