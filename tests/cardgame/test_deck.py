@@ -1,4 +1,6 @@
-from python_properly.cardgame.deck import Deck
+import pytest
+
+from python_properly.cardgame.deck import Deck, DeckEmptyError
 
 
 unshuffled_order = [
@@ -41,3 +43,16 @@ def test_deck_draw():
         "2 of Spades",
         "3 of Clubs",
     ]
+
+
+def test_deck_draw_too_many():
+    deck = Deck()
+    with pytest.raises(DeckEmptyError):
+        deck.draw(53)
+
+
+def test_deck_draw_from_empty_deck():
+    deck = Deck()
+    deck.draw(52)
+    with pytest.raises(DeckEmptyError):
+        deck.draw()
