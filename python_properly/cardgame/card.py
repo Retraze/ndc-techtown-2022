@@ -32,10 +32,29 @@ class Suit(Enum):
     Diamonds = "D"
     Clubs = "C"
 
+    @classmethod
+    def from_str(cls, suit: str):
+        if type(suit) != str:
+            raise InvalidSuitError(suit)
+        try:
+            return cls[suit]
+        except KeyError:
+            pass
+        try:
+            return cls(suit)
+        except ValueError:
+            raise InvalidSuitError(suit)
+
 
 class Card:
     # learn: class attributes
     rank_mapping = {11: "Knight", 12: "Queen", 13: "King", 14: "Ace"}
+    suit_ascending_values = [
+        Suit.Clubs,
+        Suit.Diamonds,
+        Suit.Hearts,
+        Suit.Spades,
+    ]
 
     # learn: type hinting
     def __init__(self, rank: int, suit: Union[Suit, str]):
@@ -43,7 +62,7 @@ class Card:
             raise InvalidRankError(rank)
         self.rank = rank
 
-        self.suit = suit if type(suit) is Suit else self.parse_suit(suit)
+        self.suit = suit if type(suit) is Suit else Suit.from_str(suit)
 
     # learn: classmethod
     @classmethod
@@ -82,21 +101,16 @@ class Card:
     def is_valid_rank(rank: int):
         return type(rank) is int and rank >= 2 and rank <= 14
 
-    @staticmethod
-    def parse_suit(suit: str):
-        if type(suit) != str:
-            raise InvalidSuitError(suit)
-        try:
-            return Suit[suit]
-        except KeyError:
-            pass
-        try:
-            return Suit(suit)
-        except ValueError:
-            raise InvalidSuitError(suit)
-
     def __lt__(self, other):
-        raise NotImplementedError
+        if self.rank < other.rank:
+            return True
+        if self.rank == other.rank:
+            if self.suit_ascending_values.index(self.suit) < self.suit_ascending_values.index(other.suit):
+                return True
+        return False
+
+    def __eq__(self, other):
+        return self.rank == other.rank and self.suit == other.suit
 
     # learn: __str__
     def __str__(self):
