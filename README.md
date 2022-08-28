@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-* [Python 3.7](https://www.python.org/)
+* Minimum [Python 3.6](https://www.python.org/)
 * [Poetry](https://python-poetry.org/)
 
 ## Getting Started
@@ -16,8 +16,9 @@ poetry shell   # enters you into the virtual environment
 
 ## Workshop Resources:
 
-* TODO: [Slides](#todo)
-* TODO: [Assignments](#todo)
+* Event: [NDC TechTown Kongsberg 2022](https://ndctechtown.com/workshops/python-proficiency/4e5273ab01d2)
+* Day 1: [Assignments](https://efficient-amaranthus-364.notion.site/Exercises-Day-1-c1b2113d12d7442fb294b114a6490875)
+* Day 2: Coming!
 
 
 ## Continued Reading
