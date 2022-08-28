@@ -1,6 +1,6 @@
 import pytest
 
-from python_properly.datastructures.descriptor import VarChar
+from techtown2022.datastructures.descriptor import VarChar
 
 
 def test_varchar():
