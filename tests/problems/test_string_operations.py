@@ -1,4 +1,4 @@
-import python_properly.problems.string_operations as problems
+import techtown2022.problems.string_operations as problems
 import pytest
 
 # you can run these tests like so:

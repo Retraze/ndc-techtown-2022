@@ -10,7 +10,7 @@ from typing import List, Dict, Any
 # functions with new functions with the same name below
 
 # You can run this module (see __main__.py) as follow:
-#   $ poetry run python -m python_properly.tabular_data
+#   $ poetry run python -m techtown2022.tabular_data
 
 
 

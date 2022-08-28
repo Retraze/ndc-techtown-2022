@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python-proficiency"
+name = "techtown2022"
 version = "1.0.0"
 description = "A workshop in intermediate to advanced Python"
 authors = [
@@ -19,6 +19,7 @@ pytest-timeout = "^2.1.0"
 ptpython = "^3"
 objexplore = "^1.6"
 tabulate = "^0.8.10"
+mock = "^4.0.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

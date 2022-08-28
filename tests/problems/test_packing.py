@@ -1,4 +1,4 @@
-import python_properly.problems.packing as problems
+import techtown2022.problems.packing as problems
 import pytest
 import functools
 

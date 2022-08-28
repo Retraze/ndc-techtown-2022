@@ -1,10 +1,10 @@
 """ These test fail! We have rewrite the tests with mock """
 import pytest
 
-from python_properly.music_player.business_logic import play_song
-from python_properly.music_player.dbconn import DBConnection
-from python_properly.music_player.audio_player import AudioPlayer
-from python_properly.music_player.drm import DRMViolationError
+from techtown2022.music_player.business_logic import play_song
+from techtown2022.music_player.dbconn import DBConnection
+from techtown2022.music_player.audio_player import AudioPlayer
+from techtown2022.music_player.drm import DRMViolationError
 
 
 def test_player_song_without_mocking():

@@ -75,7 +75,7 @@ def transpose(matrix):
 
 
 # You can run this module as follow:
-#   $ poetry run python -m python_properly.problems.list_comprehensions
+#   $ poetry run python -m techtown2022.problems.list_comprehensions
 
 if __name__ == "__main__":
     from rich import print

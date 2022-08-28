@@ -1,4 +1,4 @@
-import python_properly.problems.list_comprehensions as problems
+import techtown2022.problems.list_comprehensions as problems
 import random
 import statistics
 import functools

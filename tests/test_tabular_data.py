@@ -1,5 +1,5 @@
-from python_properly import tabular_data
-from python_properly.tabular_data import data
+from techtown2022 import tabular_data
+from techtown2022.tabular_data import data
 import pytest
 import tabulate
 import random

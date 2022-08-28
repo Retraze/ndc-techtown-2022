@@ -1,6 +1,6 @@
 import pytest
 
-from python_properly.cardgame.deck import Deck, DeckEmptyError
+from techtown2022.cardgame.deck import Deck, DeckEmptyError
 
 
 unshuffled_order = [

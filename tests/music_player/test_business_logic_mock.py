@@ -7,13 +7,13 @@ This module contains tests that comply with the assignment.
 import pytest
 import mock
 
-from python_properly.music_player.business_logic import play_song
-from python_properly.music_player.song import SongData
-from python_properly.music_player.drm import DRMViolationError
+from techtown2022.music_player.business_logic import play_song
+from techtown2022.music_player.song import SongData
+from techtown2022.music_player.drm import DRMViolationError
 
 
-@mock.patch("python_properly.music_player.dbconn.DBConnection")
-@mock.patch("python_properly.music_player.audio_player.AudioPlayer")
+@mock.patch("techtown2022.music_player.dbconn.DBConnection")
+@mock.patch("techtown2022.music_player.audio_player.AudioPlayer")
 def test_player_song_simple(player, dbconn):
     song_title = "Fear of the Aardvark"
 
@@ -21,8 +21,8 @@ def test_player_song_simple(player, dbconn):
 
 
 # with mocking
-@mock.patch("python_properly.music_player.dbconn.DBConnection")
-@mock.patch("python_properly.music_player.audio_player.AudioPlayer")
+@mock.patch("techtown2022.music_player.dbconn.DBConnection")
+@mock.patch("techtown2022.music_player.audio_player.AudioPlayer")
 def test_player_song_ok(player, dbconn):
     song_data = SongData("Fear of the Aardvark", "Steel Maiden", 1345)
     dbconn.get_song.return_value = song_data
@@ -38,8 +38,8 @@ def test_player_song_ok(player, dbconn):
     player.play.assert_called_with(song_id=song_data.player_song_id)
 
 
-@mock.patch("python_properly.music_player.dbconn.DBConnection")
-@mock.patch("python_properly.music_player.audio_player.AudioPlayer")
+@mock.patch("techtown2022.music_player.dbconn.DBConnection")
+@mock.patch("techtown2022.music_player.audio_player.AudioPlayer")
 def test_player_song_metalica(player, dbconn):
     song_data = SongData("Meeseeks and Destroy", "Metalica", 2413)
     dbconn.get_song.return_value = song_data

@@ -1,5 +1,5 @@
-from python_properly.cardgame.card import Card
-from python_properly.cardgame.hand import PokerHand
+from techtown2022.cardgame.card import Card
+from techtown2022.cardgame.hand import PokerHand
 
 
 def test_pokerhand_flush():
