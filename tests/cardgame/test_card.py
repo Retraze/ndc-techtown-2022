@@ -1,7 +1,7 @@
 import pytest
 import inspect
 
-from python_properly.cardgame.card import Card, Suit, InvalidCardError, InvalidRankError, InvalidSuitError
+from techtown2022.cardgame.card import Card, Suit, InvalidCardError, InvalidRankError, InvalidSuitError
 
 
 def test_suit_from_name():

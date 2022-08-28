@@ -14,7 +14,7 @@ def timeit(func: callable) -> float:
 
 
 # You can run this using:
-#   $ poetry run python -m python_properly.problems.timeit
+#   $ poetry run python -m techtown2022.problems.timeit
 
 if __name__ == "__main__":
     @timeit

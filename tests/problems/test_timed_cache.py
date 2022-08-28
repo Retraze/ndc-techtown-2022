@@ -1,4 +1,4 @@
-import python_properly.problems.timed_cache as problems
+import techtown2022.problems.timed_cache as problems
 import pytest
 import time
 

@@ -1,4 +1,4 @@
-import python_properly.problems.timeit as problems
+import techtown2022.problems.timeit as problems
 import itertools
 import time
 

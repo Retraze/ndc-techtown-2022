@@ -7,22 +7,22 @@ This module contains tests that comply with the assignment.
 import pytest
 import mock
 
-from python_properly.music_player.business_logic import play_song
-from python_properly.music_player.song import SongData
-from python_properly.music_player.drm import DRMViolationError
+from techtown2022.music_player.business_logic import play_song
+from techtown2022.music_player.song import SongData
+from techtown2022.music_player.drm import DRMViolationError
 
 
 @pytest.fixture
 def mocked_dbconnection(monkeypatch):
     mocked_dbconnection = mock.MagicMock()
-    monkeypatch.setattr("python_properly.music_player.dbconn.DBConnection", mocked_dbconnection)
+    monkeypatch.setattr("techtown2022.music_player.dbconn.DBConnection", mocked_dbconnection)
     return mocked_dbconnection
 
 
 @pytest.fixture
 def mocked_audio_player(monkeypatch):
     mocked_audio_player = mock.MagicMock()
-    monkeypatch.setattr("python_properly.music_player.audio_player.AudioPlayer", mocked_audio_player)
+    monkeypatch.setattr("techtown2022.music_player.audio_player.AudioPlayer", mocked_audio_player)
     return mocked_audio_player
 
 

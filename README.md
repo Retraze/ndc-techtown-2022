@@ -10,18 +10,6 @@
 ```shell
 git clone https://github.com/Retraze/ndc-techtown-2022.git
 cd ndc-techtown-2022
-```
-
-If you have setup [direnv](https://direnv.net/):
-
-```shell
-direnv allow    # enters you into the poetry-manager virtual environment
-poetry install  # installs the python dependencies
-```
-
-Otherwise:
-
-```shell
 poetry install # installs the python dependencies
 poetry shell   # enters you into the virtual environment
 ```

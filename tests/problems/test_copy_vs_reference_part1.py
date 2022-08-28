@@ -1,4 +1,4 @@
-from python_properly.problems.copy_vs_reference_part1  import User
+from techtown2022.problems.copy_vs_reference_part1  import User
 
 # you can run these tests like so:
 #   $ poetry run pytest tests/problems/test_copy_vs_reference_part1.py -x -v
