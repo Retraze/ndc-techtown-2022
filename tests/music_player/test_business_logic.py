@@ -1,8 +1,10 @@
 """ These test fail! We have rewrite the tests with mock """
 import pytest
 
+from python_properly.music_player.business_logic import play_song
 from python_properly.music_player.dbconn import DBConnection
 from python_properly.music_player.audio_player import AudioPlayer
+from python_properly.music_player.drm import DRMViolationError
 
 
 def test_player_song_without_mocking():
@@ -14,6 +16,8 @@ def test_player_song_without_mocking():
 
 
 def test_player_song_without_mocking_metalica():
+    dbconn = DBConnection()
+    player = AudioPlayer()
     song_title = "Meeseeks and Destroy"
     with pytest.raises(DRMViolationError):
         play_song(song_title, dbconn, player)
