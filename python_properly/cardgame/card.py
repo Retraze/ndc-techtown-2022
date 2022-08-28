@@ -27,10 +27,27 @@ class InvalidSuitError(InvalidCardError):
 
 # learn: Enum
 class Suit(Enum):
-    Spades = "S"
-    Hearts = "H"
-    Diamonds = "D"
     Clubs = "C"
+    Diamonds = "D"
+    Hearts = "H"
+    Spades = "S"
+
+    @classmethod
+    def from_str(cls, suit: str):
+        if type(suit) != str:
+            raise InvalidSuitError(suit)
+        try:
+            return cls[suit]
+        except KeyError:
+            pass
+        try:
+            return cls(suit)
+        except ValueError:
+            raise InvalidSuitError(suit)
+
+    def __lt__(self, other):
+        suit_names_ascending_values = list(Suit.__members__)
+        return suit_names_ascending_values.index(self.name) < suit_names_ascending_values.index(other.name)
 
 
 class Card:
@@ -43,7 +60,7 @@ class Card:
             raise InvalidRankError(rank)
         self.rank = rank
 
-        self.suit = suit if type(suit) is Suit else self.parse_suit(suit)
+        self.suit = suit if type(suit) is Suit else Suit.from_str(suit)
 
     # learn: classmethod
     @classmethod
@@ -82,21 +99,16 @@ class Card:
     def is_valid_rank(rank: int):
         return type(rank) is int and rank >= 2 and rank <= 14
 
-    @staticmethod
-    def parse_suit(suit: str):
-        if type(suit) != str:
-            raise InvalidSuitError(suit)
-        try:
-            return Suit[suit]
-        except KeyError:
-            pass
-        try:
-            return Suit(suit)
-        except ValueError:
-            raise InvalidSuitError(suit)
-
     def __lt__(self, other):
-        raise NotImplementedError
+        if self.rank < other.rank:
+            return True
+        if self.rank == other.rank:
+            if self.suit < other.suit:
+                return True
+        return False
+
+    def __eq__(self, other):
+        return self.rank == other.rank and self.suit == other.suit
 
     # learn: __str__
     def __str__(self):

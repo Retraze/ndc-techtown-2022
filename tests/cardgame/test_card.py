@@ -42,14 +42,15 @@ def test_card_invalid_rank():
             Card(rank, Suit.Spades)
 
 
-def test_card_parse_suit():
-    assert Card.parse_suit("Spades") == Suit.Spades
-    assert Card.parse_suit("H") == Suit.Hearts
+def test_suit_from_string():
+    assert Suit.from_str("Spades") == Suit.Spades
+    assert Suit.from_str("H") == Suit.Hearts
 
     with  pytest.raises(InvalidSuitError):
-        Card.parse_suit("HH")
+        Suit.from_str("HH")
     with  pytest.raises(InvalidSuitError):
-        Card.parse_suit("Blubs")
+        Suit.from_str("Blubs")
+
 
 def test_card_invalid_suit_type():
     invalid_suits = [-3, [], None]
@@ -84,12 +85,51 @@ def test_card_repr():
 
 
 def test_rank_str_property():
-    card = Card.from_str("14C")
+    card = Card(14, Suit.Clubs)
     assert card.rank_str == "Ace"
 
-    card = Card.from_str("7S")
+    card = Card(7, Suit.Spades)
     assert card.rank_str == "7"
 
+def test_card_sort():
+    cards = [
+        Card(14, Suit.Clubs),
+        Card(14, Suit.Diamonds),
+        Card(14, Suit.Spades),
+        Card(14, Suit.Hearts),
+        Card(5, Suit.Clubs),
+        Card(10, Suit.Clubs),
+    ]
+    cards.sort()
+    assert cards == [
+        Card(5, Suit.Clubs),
+        Card(10, Suit.Clubs),
+        Card(14, Suit.Clubs),
+        Card(14, Suit.Diamonds),
+        Card(14, Suit.Hearts),
+        Card(14, Suit.Spades),
+    ]
+
+"""
+def test_suit_sort():
+    suits = [
+        Suit.Clubs,
+        Suit.Diamonds,
+        Suit.Spades,
+        Suit.Hearts,
+        Suit.Clubs,
+        Suit.Clubs,
+    ]
+    suits.sort()
+    assert suits == [
+        Suit.Clubs,
+        Suit.Clubs,
+        Suit.Clubs,
+        Suit.Diamonds,
+        Suit.Hearts,
+        Suit.Spades,
+    ]
+"""
 
 def test_from_str():
     card = Card.from_str("13D")
@@ -109,3 +149,7 @@ def test_from_str_invalid():
 
 #def test_from_tuple():
 #    raise NotImplementedError
+
+
+if __name__ == '__main__':
+    pytest.main(args=[__file__])

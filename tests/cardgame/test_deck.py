@@ -1,15 +1,15 @@
-# learn: __init__.py and __all__ ?
-# from python_properly.cardgame import Deck
-from python_properly.cardgame.deck import Deck
+import pytest
+
+from python_properly.cardgame.deck import Deck, DeckEmptyError
 
 
 unshuffled_order = [
-        (0, "2 of Spades"),
-        (1, "2 of Hearts"),
-        (2, "2 of Diamonds"),
-        (3, "2 of Clubs"),
-        (-2, "Ace of Diamonds"),
-        (-1, "Ace of Clubs"),
+        (0, "2 of Clubs"),
+        (1, "2 of Diamonds"),
+        (2, "2 of Hearts"),
+        (3, "2 of Spades"),
+        (-2, "Ace of Hearts"),
+        (-1, "Ace of Spades"),
     ]
 
 def test_deck():
@@ -37,9 +37,22 @@ def test_deck_draw():
     assert len(deck.cards) == 52-5
 
     assert [str(card) for card in five_cards] == [
-        "2 of Spades",
-        "2 of Hearts",
-        "2 of Diamonds",
         "2 of Clubs",
-        "3 of Spades",
+        "2 of Diamonds",
+        "2 of Hearts",
+        "2 of Spades",
+        "3 of Clubs",
     ]
+
+
+def test_deck_draw_too_many():
+    deck = Deck()
+    with pytest.raises(DeckEmptyError):
+        deck.draw(53)
+
+
+def test_deck_draw_from_empty_deck():
+    deck = Deck()
+    deck.draw(52)
+    with pytest.raises(DeckEmptyError):
+        deck.draw()
