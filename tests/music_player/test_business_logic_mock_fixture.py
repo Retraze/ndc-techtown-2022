@@ -26,6 +26,10 @@ def mocked_audio_player(monkeypatch):
     return mocked_audio_player
 
 
+def test_player_song_simple(mocked_dbconnection, mocked_audio_player):
+    song_title = "Fear of the Aardvark"
+    play_song(song_title, mocked_dbconnection, mocked_audio_player)
+
 
 def test_player_song_ok(mocked_dbconnection, mocked_audio_player):
     song_data = SongData("Fear of the Aardvark", "Steel Maiden", 1345)
