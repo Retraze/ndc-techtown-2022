@@ -18,7 +18,7 @@ poetry shell   # enters you into the virtual environment
 
 * Event: [NDC TechTown Kongsberg 2022](https://ndctechtown.com/workshops/python-proficiency/4e5273ab01d2)
 * Day 1: [Assignments](https://efficient-amaranthus-364.notion.site/Exercises-Day-1-c1b2113d12d7442fb294b114a6490875)
-* Day 2: Coming!
+* Day 2: [Assignments](https://efficient-amaranthus-364.notion.site/Exercises-Day-2-eae76999cce04b269965b4a0db7ec286)
 
 
 ## Continued Reading
