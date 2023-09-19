@@ -38,5 +38,5 @@ if __name__ == "__main__":
             return f()
 
     print(f"{threaded_map((2).__add__, 5, [1, 2, 3, 4, 5]) = }")
-    print(f"{process_with_lock(int.__add, 3, 4)            = }")
+    print(f"{process_with_lock(int.__add__, 3, 4)            = }")
     print(f"{submit_doubles(Pool(), [1, 2, 3, 4])          = }")
